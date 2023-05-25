@@ -11,8 +11,9 @@ import blog.ex.model.entity.BlogEntity;
 @Service
 public class BlogService {
 	@Autowired
-	BlogDao blogDao;
+	private BlogDao blogDao;
 	
+	//既存ブログ検証のメソッド
 	public boolean validateBlog(String title) {
 		BlogEntity blogEntity = blogDao.findByBlogTitle(title);
 		if (blogEntity == null) {
@@ -22,6 +23,7 @@ public class BlogService {
 		}
 	}
 	
+	//新規ブログ登録のメソッド
 	public boolean createBlog(String title, String content) {
 		if(blogDao.findByBlogTitle(title) == null) {
 			blogDao.save(new BlogEntity(title, content));
@@ -30,26 +32,23 @@ public class BlogService {
 			return false;
 		}
 	}
-	//改修必要
-	public boolean editBlog(BlogEntity blogEntity, String title, String content) {
-		if(blogEntity == null) {
-			return false;
-		} else {
-			blogEntity.setBlogTitle(title);
-			blogEntity.setBlogContent(content);
-			return true;
-		}
-	}
-	//改修必要
-	public boolean deleteBlog(BlogEntity blogEntity) {
-		if(blogEntity == null) {
-			return false;
-		} else {
-			
-			return true;
-		}
+	
+	//ブログ編集メソッド
+	public boolean editBlog(Short blogId, String title, String content) {
+		BlogEntity blogEntity = blogDao.findByBlogId(blogId);
+		blogEntity.setBlogId(blogId);
+		blogEntity.setBlogTitle(title);
+		blogEntity.setBlogContent(content);			
+		blogDao.save(blogEntity);
+		return true;
 	}
 	
+	//ブログ削除メソッド
+	public void deleteBlog(Short id) {
+		blogDao.deleteById(id);
+	}
+	
+	//一覧取得のメソッド
 	public List<BlogEntity> selectFindAll() {
 		return blogDao.findAll();
 	}

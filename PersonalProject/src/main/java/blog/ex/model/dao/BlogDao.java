@@ -10,12 +10,18 @@ import blog.ex.model.entity.BlogEntity;
 @Repository
 public interface BlogDao extends JpaRepository<BlogEntity, Short> {
 	//saveメソッド
-		//AccountEntityを引数として受け取ってAccountEntityを保存し、保存したAccountEntityを返す
-		BlogEntity save(BlogEntity blogEntity);
+	//BlogEntityを引数として受け取ってBlogEntityを保存し、保存したBlogEntityを返す
+	BlogEntity save(BlogEntity blogEntity);
+	
+	//Short型の引数を受け取って、一致するidを持つBlogEntityを返す
+	BlogEntity findByBlogId(Short id);
 		
-		//String型の引数として受け取って、その引数と一致するusernameを持つAdminEntityを返す
-		BlogEntity findByBlogTitle(String title);
+	//String型の引数として受け取って、一致するtitleを持つBlogEntityを返す
+	BlogEntity findByBlogTitle(String title);
 		
-		//一覧表示
-		List<BlogEntity> findAll();
+	//一覧表示		
+	List<BlogEntity> findAll();
+	
+	//ブログ削除
+	void deleteById(Short id);
 }

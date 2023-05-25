@@ -11,9 +11,9 @@ import blog.ex.model.entity.AccountEntity;
 @Service
 public class AccountService {
 	@Autowired
-	AccountDao accountDao;
+	private AccountDao accountDao;
 	
-	//ログインチェック用のメソッド
+	//ログイン時アカウントチェックのメソッド
 	public boolean validateAccount(String username, String password) {
 		AccountEntity accountEntity = accountDao.findByAccountUsernameAndAccountPassword(username, password);
 		if (accountEntity == null) {
@@ -23,7 +23,7 @@ public class AccountService {
 		}
 	}
 	
-	//登録処理チェック用のメソッド
+	//新規アカウント登録処理のメソッド
 	public boolean createAccount(String username, String email, String password) {
 		if(accountDao.findByAccountEmail(email) == null || accountDao.findByAccountUsername(username) == null) {
 			accountDao.save(new AccountEntity(username, email, password));
@@ -33,6 +33,7 @@ public class AccountService {
 		}
 	}
 	
+	//一覧取得のメソッド
 	public List<AccountEntity> selectFindAll() {
 		return accountDao.findAll();
 	}

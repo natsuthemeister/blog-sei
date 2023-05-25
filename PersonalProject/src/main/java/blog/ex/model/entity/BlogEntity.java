@@ -1,6 +1,5 @@
 package blog.ex.model.entity;
 
-
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,6 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="account")
 public class BlogEntity {
+	//関連DBの各々カラムに繋がる
 	@Id
 	@Column(name="blog_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,6 @@ public class BlogEntity {
 	@Column(name="blog_content")
 	private String blogContent;
 	
-	//後ほどDBチェック
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="create_date")
 	private LocalDate createDate;
@@ -45,10 +44,17 @@ public class BlogEntity {
 		
 	}
 
+	//ブログのエンティティーを生成するコンストラクタ
 	public BlogEntity(String blogTitle, String blogContent) {
 		this.blogTitle = blogTitle;
 		this.blogContent = blogContent;
-		this.readCount = 0;
+	}
+
+	//ブログ編集時のコンストラクタ
+	public BlogEntity(Short blogId, String blogTitle, String blogContent) {
+		this.blogId = blogId;
+		this.blogTitle = blogTitle;
+		this.blogContent = blogContent;
 	}
 
 	public Short getBlogId() {
