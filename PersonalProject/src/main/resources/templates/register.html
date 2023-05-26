@@ -9,32 +9,48 @@
     <title>Register</title>
 </head>
 
-<body>
+<body class="body1">
     <h1>Register</h1>
     <form action="" method="post">
         <table class="inputTable">
             <tr>
                 <td class="item">Username:</td>
+            </tr>
+            <tr>
                 <td><input type="text" id="name" name="username" placeholder="ユーザー名を入力" required></td>
             </tr>
             <tr>
                 <td class="item">Email:</td>
+            </tr>
+            <tr>
                 <td><input type="text" id="email" name="email" placeholder="e-mailを入力" required></td>
             </tr>
             <tr>
                 <td class="item">Password:</td>
+            </tr>
+            <tr>
                 <td><input type="password" id="password" name="password" placeholder="パスワード入力" required></td>
             </tr>
             <tr>
                 <td class="item">Repeat Password:</td>
+            </tr>
+            <tr>
                 <td><input type="password" id="rpassword" name="rpassword" placeholder="パスワード再入力" required></td>
             </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="terms" name="terms" required><a
+                        href="https://policies.google.com/privacy?hl=en-US" target="_blank">Terms &amp; Privacy</a>
+                    を読んで同意して下さい
+                </td>
+            </tr>
+            <tr>
+                <td class="button1">
+                    <button id="register">Register</button>
+                </td>
+            </tr>
         </table>
-        <br>
-        <input type="checkbox" name="terms" required><a href="https://policies.google.com/privacy?hl=en-US"
-            target="_blank">Terms &amp; Privacy</a> を読んで同意して下さい
-        <br><br>
-        <button>Register</button>
+
         <p>Already have an account? <span><a href="login.html" target="_blank">Sign in</a></span>.</p>
 
     </form>

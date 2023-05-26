@@ -9,21 +9,28 @@
     <title>Login</title>
 </head>
 
-<body>
+<body class="body1">
     <form action="" method="post">
         <h1>Login</h1>
         <table class="inputTable">
             <tr>
                 <td class="item">Username</td>
+            </tr>
+            <tr>
                 <td><input type="text" id="name" name="username" placeholder="ユーザー名入力" required></td>
             </tr>
             <tr>
                 <td class="item">Password</td>
+            </tr>
+            <tr>
                 <td><input type="password" id="pwd" name="password" placeholder="パスワード入力" required></td>
             </tr>
+            <tr>
+                <td class="button1">
+                    <button id="login">Login</button>
+                </td>
+            </tr>
         </table>
-        <br>
-        <button>Login</button>
         <p>Don't have an account? <span><a href="register.html" target="_blank">Register</a></span>.</p>
     </form>
 

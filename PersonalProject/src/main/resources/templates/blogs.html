@@ -9,8 +9,8 @@
     <title>Blog Website</title>
 </head>
 
-<body>
-    <h1>ようこそブログサイトへ！</h1>
+<body class="body2">
+    <!-- <h1><span></span>さん、ようこそブログサイトへ！</h1>
     <div>
         <h2>All Blogs</h2>
         <ul class="blogList">
@@ -23,6 +23,49 @@
         <h2>New Blog</h2>
         <a href="new-blog.html" target="_blank">新しいブログを書く</a>
     </div>
+    <button>ログアウト</button> -->
+
+    <div class="tabs">
+        <div class="tab">
+            <button id="tabButton1" class="tabLinks" onclick="openTab(event, 'tab1')">Our Message</button>
+        </div>
+        <div class="tab">
+            <button id="tabButton2" class="tabLinks" onclick="openTab(event, 'tab2')">All Blogs</button>
+        </div>
+        <div class="tab">
+            <button id="tabButton3" class="tabLinks" onclick="openTab(event, 'tab3')">New Blog</button>
+        </div>
+        <div class="tab">
+            <button id="tabButton4" class="tabLinks" onclick="openTab(event, 'tab4')">Log Out</button>
+            <!-- <button th:attr="onClick='location.href=\''+'/lesson/cart/delete/'+${lesson.lessonId}+'\''">削除</button> -->
+            <!-- <button class="apply_btn" onclick="location.href='/lesson/request'">購入</button> -->
+        </div>
+    </div>
+
+    <div id="tab1" class="tabContent">
+        <h1><span></span>さん、ようこそ！</h1>
+    </div>
+
+    <div id="tab2" class="tabContent">
+        <ul class="blogList">
+            <li th:each="blogEntity : ${blogPosts}">
+                <a th:href="@{/blog/{blogId}(blogId=${blogEntity.blogId})}" th:text="${blogEntity.blogTitle}" target="_blank"></a>
+            </li>
+            <li>111</li>
+            <li>222</li>
+        </ul>
+    </div>
+
+    <div id="tab3" class="tabContent">
+        <a href="new_blog.html" target="_blank">新しいブログを書く</a>
+    </div>
+
+    <div id="tab4" class="tabContent">
+        <button>ログアウト</button>
+    </div>
+
+    <script src="code.js"></script>
+
 </body>
 
 </html>

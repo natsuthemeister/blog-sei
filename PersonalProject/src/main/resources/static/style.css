@@ -1,24 +1,73 @@
-body{
+body {
     text-align: center;
 }
 
-.inputTable{
-    margin-left: auto;
-    margin-right: auto;
+.body1 {
+    padding-top: 5%;
+    background-image: url(img/loginregister.jpeg);
+    background-size: cover;
+}
+
+.body2 {
+    background-image: url(img/blogbackground.jpeg);
+    background-size: cover;
+}
+
+.body3 {
+    padding-top: 50px;
+    background-image: url(img/blogbackground.jpeg);
+    background-size: cover;
+}
+
+.inputTable {
+    width: 30%;
+    background-color: #87CEFA;
+    margin: 30px auto 0;
+    text-align: center;
+    border-radius: 22px;
+    padding-top: 10px;
 }
 
 .item{
+    font-size: 18px;
+    text-align: left;
+    padding-left: 22px;
+}
+
+input[type="text"], input[type="password"]{
+    height: 30px;
+    width: 90%;
+    margin: 10px 0; 
+}
+
+.inputTable td button{
+    width: 150px;
+    height: 44px;
+    background-color: #40CD82; 
+    border-radius: 22px;
+}
+
+.button1 {
+    padding: 20px;
+}
+
+#login, #register{
+    font-size: 15px;
+}
+
+#terms {
     text-align: left;
 }
 
 .newBlogLabel {
+    font-size: 18px;
     text-align: left;
     display: block;
     width: 60%;
     margin: 0 auto;
 } 
 
-.newBlog{
+.newBlog {
     width: 80%;
     margin: 0 auto;
 }
@@ -34,3 +83,40 @@ textarea {
     text-align: left;
 }
 
+.tabs {
+    text-align: center;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+    
+.tab {    
+    flex: 1;
+}
+  
+#tabButton1, #tabButton2, #tabButton3, #tabButton4 {
+    font-size: 20px;
+}
+  
+.tab button {
+    background-color: transparent;
+    border: none;
+    outline: none; 
+    cursor: pointer;
+    padding: 8px 16px;
+}
+    
+.tabContent {
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    align-items: center;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+  
+     
+.tabContent.show {
+    display: block;
+}
+    
