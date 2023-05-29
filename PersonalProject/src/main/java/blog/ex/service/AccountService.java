@@ -14,12 +14,12 @@ public class AccountService {
 	private AccountDao accountDao;
 	
 	//ログイン時アカウントチェックのメソッド
-	public boolean validateAccount(String username, String password) {
+	public AccountEntity validateAccount(String username, String password) {
 		AccountEntity accountEntity = accountDao.findByAccountUsernameAndAccountPassword(username, password);
 		if (accountEntity == null) {
-			return false;
+			return null;
 		} else {
-			return true;
+			return accountEntity;
 		}
 	}
 	

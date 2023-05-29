@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="account")
+@Table(name="blog")
 public class BlogEntity {
 	//関連DBの各々カラムに繋がる
 	@Id
@@ -45,9 +45,12 @@ public class BlogEntity {
 	}
 
 	//ブログのエンティティーを生成するコンストラクタ
-	public BlogEntity(String blogTitle, String blogContent) {
+	public BlogEntity(String blogTitle, String blogContent, Short accountId) {
 		this.blogTitle = blogTitle;
 		this.blogContent = blogContent;
+		this.accountId = accountId;
+		this.createDate = LocalDate.now();
+		this.editDate = null;
 	}
 
 	//ブログ編集時のコンストラクタ
@@ -55,6 +58,7 @@ public class BlogEntity {
 		this.blogId = blogId;
 		this.blogTitle = blogTitle;
 		this.blogContent = blogContent;
+		this.editDate = LocalDate.now();
 	}
 
 	public Short getBlogId() {

@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
     <title>Register</title>
 </head>
 
 <body class="body1">
     <h1>Register</h1>
-    <form action="" method="post">
+    <form th:action="@{/register/process}" method="post">
         <table class="inputTable">
             <tr>
                 <td class="item">Username:</td>
@@ -35,7 +35,7 @@
                 <td class="item">Repeat Password:</td>
             </tr>
             <tr>
-                <td><input type="password" id="rpassword" name="rpassword" placeholder="パスワード再入力" required></td>
+                <td><input type="password" id="repeatPassword" name="repeatPassword" placeholder="パスワード再入力" required></td>
             </tr>
             <tr>
                 <td>

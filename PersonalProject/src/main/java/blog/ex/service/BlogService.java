@@ -24,12 +24,22 @@ public class BlogService {
 	}
 	
 	//新規ブログ登録のメソッド
-	public boolean createBlog(String title, String content) {
+	public boolean createBlog(String title, String content, Short accountId) {
 		if(blogDao.findByBlogTitle(title) == null) {
-			blogDao.save(new BlogEntity(title, content));
+			blogDao.save(new BlogEntity(title, content, accountId));
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	//既存ブログを検索
+	public BlogEntity searchBlog(Short blogId) {
+		BlogEntity blogEntity = blogDao.findByBlogId(blogId);
+		if(blogEntity == null) {
+			return null;
+		} else {
+			return blogEntity;
 		}
 	}
 	

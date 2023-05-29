@@ -119,4 +119,7 @@ textarea {
 .tabContent.show {
     display: block;
 }
-    
+
+.actionButton {
+    display: inline-block;
+}
