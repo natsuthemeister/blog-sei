@@ -2,35 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="@{/style.css}">
-    <title>Blog Post</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/style.css}">
+	<title>Blog Post</title>
 </head>
 
 <body class="body3">
-    <h2>[[${blogId.blogTitle}]]</h2>
+	<h1>[[${blogId.blogTitle}]]</h1>
 
-    <p>[[${blogId.blogContent}]]</p>
+	<p>[[${blogId.blogContent}]]</p>
+	<p>読者数: [[${blogId.readCount}]]</p>
 
-    <div class="actionButton">
-        <form th:action="@{/edit}" method="post">
-            <!-- <label for="title" class="newBlogLabel">タイトル:</label><br>
-            <textarea id="title" rows="1" cols="100" name="blogTitle"
-                                    th:text="${blogId.blogTitle}" required></textarea><br><br>
-    
-            <label for="content" class="newBlogLabel">内容:</label><br>
-            <textarea id="content" rows="20" cols="100" name="blogContent"
-                                    th:text="${blogId.blogContent}" required></textarea><br><br> -->
-            <button type="submit">ブログ編集</button>
-        </form>
-    
-        <form th:action="@{/delete}" method="post">
-			<input type="hidden" name="blogId" th:value="${blogId}">
-            <button type="submit">ブログ削除</button>
-        </form>
-    </div>
+	<div class="actionButtons">
+		<div><button th:attr="onClick='location.href=\''+'/edit/'+${blogId.blogId}+'\''">編集</button></div>
+		<div>
+			<form th:action="@{/delete}" method="post">
+				<input type="hidden" name="blogId" th:value="${blogId.blogId}">
+				<button type="submit">削除</button>
+			</form>
+		</div>
+	</div>
 
 </body>
 

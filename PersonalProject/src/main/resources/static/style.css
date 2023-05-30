@@ -81,6 +81,7 @@ textarea {
     width: 180px;
     margin: 0 auto;
     text-align: left;
+    font-size: 20px;
 }
 
 .tabs {
@@ -120,6 +121,10 @@ textarea {
     display: block;
 }
 
-.actionButton {
-    display: inline-block;
+
+/*blog_post画面*/
+.actionButtons{
+	display: flex;
+	justify-content: center;
+	gap: 0 1rem;
 }

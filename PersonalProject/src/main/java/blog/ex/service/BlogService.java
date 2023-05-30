@@ -1,5 +1,6 @@
 package blog.ex.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ public class BlogService {
 	private BlogDao blogDao;
 	
 	//既存ブログ検証のメソッド
+	/**
+	 * @param title		ブログタイトル
+	 * @return	検証結果
+	 */
 	public boolean validateBlog(String title) {
 		BlogEntity blogEntity = blogDao.findByBlogTitle(title);
 		if (blogEntity == null) {
@@ -24,6 +29,12 @@ public class BlogService {
 	}
 	
 	//新規ブログ登録のメソッド
+	/**
+	 * @param title		ブログタイトル
+	 * @param content	ブログ内容
+	 * @param accountId	ユーザーアカウントID、外部キー
+	 * @return	登録結果
+	 */
 	public boolean createBlog(String title, String content, Short accountId) {
 		if(blogDao.findByBlogTitle(title) == null) {
 			blogDao.save(new BlogEntity(title, content, accountId));
@@ -34,6 +45,10 @@ public class BlogService {
 	}
 	
 	//既存ブログを検索
+	/**
+	 * @param blogId	ブログID
+	 * @return	検索結果
+	 */
 	public BlogEntity searchBlog(Short blogId) {
 		BlogEntity blogEntity = blogDao.findByBlogId(blogId);
 		if(blogEntity == null) {
@@ -44,16 +59,34 @@ public class BlogService {
 	}
 	
 	//ブログ編集メソッド
+	/**
+	 * @param blogId 	ブログID
+	 * @param title		ブログタイトル
+	 * @param content 	ブログ内容
+	 * @return	編集結果
+	 */
 	public boolean editBlog(Short blogId, String title, String content) {
+		LocalDate editDate = LocalDate.now();
 		BlogEntity blogEntity = blogDao.findByBlogId(blogId);
 		blogEntity.setBlogId(blogId);
 		blogEntity.setBlogTitle(title);
-		blogEntity.setBlogContent(content);			
+		blogEntity.setBlogContent(content);	
+		blogEntity.setEditDate(editDate);
 		blogDao.save(blogEntity);
 		return true;
 	}
 	
+	//読者数カウント
+	public void readCountBlog(Short blogId, int readCount) {
+		BlogEntity blogEntity = blogDao.findByBlogId(blogId);
+		blogEntity.setReadCount(readCount);
+		blogDao.save(blogEntity);
+	}
+	
 	//ブログ削除メソッド
+	/**
+	 * @param id	ブログID
+	 */
 	public void deleteBlog(Short id) {
 		blogDao.deleteById(id);
 	}

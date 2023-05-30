@@ -24,6 +24,14 @@ public class RegisterController {
 	//2回入力したパスワードは一致しない場合、登録画面のまま
 	//登録が成功したらログイン画面に遷移
 	//登録に失敗した場合、登録画面のまま
+	/**
+	 * @param username			ユーザー名
+	 * @param email				Eメール
+	 * @param password			パスワード
+	 * @param repeatPassword	パスワード再入力（比較用）
+	 * @param model				格納モデル
+	 * @return					遷移画面
+	 */
 	@PostMapping("/register/process")
 	public String register(@RequestParam String username, 
 			@RequestParam String email, @RequestParam String password, 

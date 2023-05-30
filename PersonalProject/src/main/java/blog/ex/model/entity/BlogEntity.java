@@ -35,7 +35,7 @@ public class BlogEntity {
 	private LocalDate editDate;
 	
 	@Column(name="read_count")
-	private Short readCount;
+	private int readCount;
 	
 	@Column(name="account_id")
 	private Short accountId;
@@ -51,6 +51,7 @@ public class BlogEntity {
 		this.accountId = accountId;
 		this.createDate = LocalDate.now();
 		this.editDate = null;
+		this.readCount = 0;
 	}
 
 	//ブログ編集時のコンストラクタ
@@ -101,11 +102,11 @@ public class BlogEntity {
 		this.editDate = editDate;
 	}
 
-	public Short getReadCount() {
+	public int getReadCount() {
 		return readCount;
 	}
 
-	public void setReadCount(Short readCount) {
+	public void setReadCount(int readCount) {
 		this.readCount = readCount;
 	}
 

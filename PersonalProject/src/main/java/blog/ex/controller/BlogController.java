@@ -24,6 +24,10 @@ public class BlogController {
 	HttpSession session;
 	
 	//ブログ一覧表示
+	/**
+	 * @param model	格納モデル
+	 * @return		遷移画面
+	 */
 	@GetMapping("/blogs")
 	public String getBlogsPage(Model model) {
 		List<BlogEntity> blogPosts = blogService.selectFindAll();
@@ -41,6 +45,12 @@ public class BlogController {
 	}
 	
 	//新規ブログ登録
+	/**
+	 * @param title		ブログタイトル
+	 * @param content	ブログ内容
+	 * @param model		格納モデル
+	 * @return			遷移画面
+	 */
 	@PostMapping("/new/blog")
 	public String create(@RequestParam String title, 
 			@RequestParam String content, Model model) {
@@ -49,17 +59,25 @@ public class BlogController {
 		if(blogService.createBlog(title, content, accountId)) {
 			model.addAttribute("title", title);
 			model.addAttribute("content", content);
-			return "blog_post.html";
+			return "redirect:/blogs";
 		} else {
 			return "new_blog.html";
 		}
 	}
 	
 	//特定ブログ画面の表示
+	/**
+	 * @param blogId	ブログID（動的）
+	 * @param model		格納モデル
+	 * @return			遷移画面
+	 */
 	@GetMapping("/blog/post/{blogId}")
 	public String getBlogPostPage(@PathVariable("blogId") Short blogId, Model model) {
 		BlogEntity blogEntity = blogService.searchBlog(blogId);
 		if(blogEntity != null) {
+			//ブログの読者数をカウント
+			blogEntity.setReadCount(blogEntity.getReadCount() + 1);
+			blogService.readCountBlog(blogId, blogEntity.getReadCount());
 			model.addAttribute("blogId", blogEntity);
 			return "blog_post.html";
 		} else {
@@ -68,22 +86,43 @@ public class BlogController {
 	}
 	
 	//ブログ編集ページ取得
-	@GetMapping("/edit")
-	public String getEditBlogPage() {
-		return "edit_blog.html";
+	/**
+	 * @param blogId	ブログID（動的）
+	 * @param model		格納モデル
+	 * @return			遷移画面
+	 */
+	@GetMapping("/edit/{blogId}")
+	public String getEditBlogPage(@PathVariable("blogId") Short blogId, Model model) {
+		BlogEntity blogEntity = blogService.searchBlog(blogId);
+		if(blogEntity != null) {
+			model.addAttribute("blogId", blogEntity);
+			return "edit_blog.html";
+		} else {
+			return "redirect:/blogs";
+		}
 	}
 	
 	//編集処理
+	/**
+	 * @param blogId	ブログID
+	 * @param title		ブログタイトル
+	 * @param content	ブログ内容
+	 * @return			遷移画面
+	 */
 	@PostMapping("/edit/blog")
 	public String edit(@RequestParam Short blogId, 
-			@RequestParam String title, @RequestParam String content) {
+			@RequestParam("blogTitle") String title, @RequestParam("blogContent") String content) {
 		blogService.editBlog(blogId, title, content);
-		return "blogs.html";
+		return "redirect:/blogs";
 	}
 	
 	//削除処理
+	/**
+	 * @param blogId	ブログID
+	 * @return			遷移画面
+	 */
 	@PostMapping("/delete")
-	public String delete(@RequestParam("delete") Short blogId) {
+	public String delete(@RequestParam Short blogId) {
 		blogService.deleteBlog(blogId);
 		return "redirect:/blogs";
 	}

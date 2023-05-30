@@ -2,7 +2,6 @@ package blog.ex.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +25,14 @@ public class LoginController {
 	}
 	
 	//ログイン処理
+	/**
+	 * @param username	ユーザー名
+	 * @param password	パスワード	
+	 * @return	遷移画面
+	 */
 	@PostMapping("/login/process")
 	public String login(@RequestParam String username, 
-			@RequestParam String password, Model model) {
+			@RequestParam String password) {
 		AccountEntity accountEntity = accountService.validateAccount(username, password);
 		if(accountEntity == null) {
 			return "login.html";

@@ -14,6 +14,11 @@ public class AccountService {
 	private AccountDao accountDao;
 	
 	//ログイン時アカウントチェックのメソッド
+	/**
+	 * @param username	ユーザー名
+	 * @param password	パスワード
+	 * @return			(見つかる場合)指定のアカウントエンティティー
+	 */
 	public AccountEntity validateAccount(String username, String password) {
 		AccountEntity accountEntity = accountDao.findByAccountUsernameAndAccountPassword(username, password);
 		if (accountEntity == null) {
@@ -24,6 +29,12 @@ public class AccountService {
 	}
 	
 	//新規アカウント登録処理のメソッド
+	/**
+	 * @param username	ユーザー名
+	 * @param email		Eメール
+	 * @param password	パスワード
+	 * @return			登録結果
+	 */
 	public boolean createAccount(String username, String email, String password) {
 		if(accountDao.findByAccountEmail(email) == null || accountDao.findByAccountUsername(username) == null) {
 			accountDao.save(new AccountEntity(username, email, password));

@@ -14,11 +14,14 @@
 
     <form class="newBlog" th:action="@{/edit/blog}" method="post">
         <label for="title" class="newBlogLabel">タイトル:</label><br>
-        <textarea id="title" rows="1" cols="100" name="blogTitle" th:text="${blogId.blogTitle}" required></textarea><br><br>
+        <textarea id="title" rows="1" cols="100" name="blogTitle" th:text="${blogId.blogTitle}"
+            required></textarea><br><br>
 
         <label for="content" class="newBlogLabel">内容:</label><br>
-        <textarea id="content" rows="20" cols="100" name="blogContent" th:text="${blogId.blogContent}" required></textarea><br><br>
-
+        <textarea id="content" rows="20" cols="100" name="blogContent" th:text="${blogId.blogContent}"
+            required></textarea><br><br>
+            
+        <input type="hidden" name="blogId" th:value="${blogId.blogId}">
         <button>保存</button>
     </form>
 </body>

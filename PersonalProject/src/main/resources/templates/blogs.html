@@ -15,12 +15,10 @@
             <button id="tabButton1" class="tabLinks" onclick="openTab(event, 'tab1')">Our Message</button>
         </div>
         <div class="tab">
-<!--            <button id="tabButton2" class="tabLinks" onclick="openTab(event, 'tab2')">All Blogs</button>-->
 			<button id="tabButton2" class="tabLinks" onclick="openTab(event, 'tab2')">All Blogs</button>
         </div>
         <div class="tab">
             <button id="tabButton3" class="tabLinks" onclick="openTab(event, 'tab3', '/new/blog')">New Blog</button>
-            <!-- <button id="tabButton3" class="tabLinks" onclick="location.href='/new_blog'">New Blog</button> -->
         </div>
         <div class="tab">
             <button id="tabButton4" class="tabLinks" onclick="openTab(event, 'tab4', '/logout')">Log Out</button>
@@ -39,11 +37,9 @@
         </ul>
     </div>
 
-    <div id="tab3" class="tabContent">
-    </div>
+    <div id="tab3" class="tabContent"></div>
 
-    <div id="tab4" class="tabContent">
-    </div>
+    <div id="tab4" class="tabContent"></div>
 
     <script th:src="@{/code.js}"></script>
 
