@@ -21,7 +21,9 @@ public class RegisterController {
 	}
 	
 	//登録処理
-	//2回入力したパスワードは一致しない場合、登録画面のまま
+	//ユーザー名が存在する場合、登録失敗
+	//メールアドレスが存在する場合、登録失敗
+	//2回入力したパスワードは一致しない場合、登録失敗
 	//登録が成功したらログイン画面に遷移
 	//登録に失敗した場合、登録画面のまま
 	/**
@@ -36,6 +38,18 @@ public class RegisterController {
 	public String register(@RequestParam String username, 
 			@RequestParam String email, @RequestParam String password, 
 			@RequestParam String repeatPassword, Model model) {
+		
+		if(accountService.usernameExists(username)) {
+	        model.addAttribute("error", true);
+	        model.addAttribute("errorMessage", "ユーザー名は既に存在します。");
+	        return "register.html";
+		}
+		
+		if(accountService.emailExists(email)) {
+	        model.addAttribute("error", true);
+	        model.addAttribute("errorMessage", "メールアドレスは既に存在します。");
+	        return "register.html";
+		}
 		
 	    if (!password.equals(repeatPassword)) {
 	        model.addAttribute("error", true);

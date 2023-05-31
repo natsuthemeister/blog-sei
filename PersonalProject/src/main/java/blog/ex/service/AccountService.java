@@ -13,6 +13,24 @@ public class AccountService {
 	@Autowired
 	private AccountDao accountDao;
 	
+	//ユーザー名検証
+	public boolean usernameExists(String username) {
+		if(accountDao.findByAccountUsername(username) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//メール検証
+	public boolean emailExists(String email) {
+		if(accountDao.findByAccountEmail(email) == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	//ログイン時アカウントチェックのメソッド
 	/**
 	 * @param username	ユーザー名
